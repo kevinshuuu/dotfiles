@@ -1,9 +1,6 @@
 " Vundle stuff...
 	set nocompatible
-  syntax on
-	filetype on
-  filetype indent on
-  filetype plugin on
+	filetype off
 
 	set rtp+=~/.vim/bundle/Vundle.vim
 	call vundle#begin()
@@ -12,27 +9,16 @@
   Plugin 'moll/vim-node'
   Plugin 'tpope/vim-rails'
 	Plugin 'scrooloose/nerdtree'
-	Plugin 'Lokaltog/vim-easymotion'
   Plugin 'altercation/vim-colors-solarized'
   Plugin 'jelera/vim-javascript-syntax'
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'digitaltoad/vim-jade'
   Plugin 'wavded/vim-stylus'
-  Plugin 'tpope/vim-surround'
-  Plugin 'vim-scripts/EasyGrep'
+  Plugin 'godlygeek/tabular'
+  Plugin 'terryma/vim-multiple-cursors'
 
 	call vundle#end()
-
-" Easymotion stuff...
-	" Allows you to avoid repeated hjkl keystrokes
-	map <Leader>h <Plug>(easymotion-linebackward)
-	map <Leader>j <Plug>(easymotion-j)
-	map <Leader>k <Plug>(easymotion-k)
-	map <Leader>l <Plug>(easymotion-lineforward)
-
-	" Uncomment to allow for keeping the cursor in the column its in when jk
-	" navigating
-	" let g:EasyMotion_startofline = 0
+	filetype plugin indent on
 
 " NERDTree stuff...
 	" Auto open NERDTree
@@ -55,7 +41,7 @@
 	set smartcase
 	set ruler
 	set nu
-  set backspace=indent,eol,start
 
-  set background=dark
-	colorscheme solarized
+	syntax enable
+	" Stuff for Solarized colorscheme
+	" colorscheme solarized
