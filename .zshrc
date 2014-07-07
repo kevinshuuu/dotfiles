@@ -1,1 +1,0 @@
-/Users/kevin2041/.zshrc
