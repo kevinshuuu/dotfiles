@@ -1,47 +1,64 @@
-" Vundle stuff...
-	set nocompatible
-	filetype off
+set nocompatible
+filetype on
+syntax on
+filetype indent on
 
-	set rtp+=~/.vim/bundle/Vundle.vim
-	call vundle#begin()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-	Plugin 'gmarik/Vundle.vim'
-  Plugin 'moll/vim-node'
-  Plugin 'tpope/vim-rails'
-	Plugin 'scrooloose/nerdtree'
-  Plugin 'altercation/vim-colors-solarized'
-  Plugin 'jelera/vim-javascript-syntax'
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'digitaltoad/vim-jade'
-  Plugin 'wavded/vim-stylus'
-  Plugin 'godlygeek/tabular'
-  Plugin 'terryma/vim-multiple-cursors'
+" Functionality
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
 
-	call vundle#end()
-	filetype plugin indent on
+" Syntax
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'wavded/vim-stylus'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'leshill/vim-json'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-haml'
 
-" NERDTree stuff...
-	" Auto open NERDTree
-	autocmd vimenter * NERDTree
 
-	" Auto open NERDTree in directory if no files specified
-	autocmd vimenter * if !argc() | NERDTree | endif
-	
-	" Map CTRL-N to toggle NERDTree
-	map <C-n> :NERDTreeToggle<CR>
+call vundle#end()
+filetype plugin indent on
 
-	" Auto close if last window open is NERDTree
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" NERDTreeToggle
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" My stuff...
-	set shiftwidth=2
-	set tabstop=2
-	set expandtab
-	set ignorecase
-	set smartcase
-	set ruler
-	set nu
+" Vim readability
+set nu
+set hlsearch
 
-	syntax enable
-	" Stuff for Solarized colorscheme
-	" colorscheme solarized
+" Tabs
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+" Airline displayed by default
+set laststatus=2
+
+" Making GitGutter look better
+highlight clear SignColumn
+let g:gitgutter_sign_column_always = 1
+
+" 80 character column marker
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+let &colorcolumn="80"
+
+function! AirlineInit()
+  let g:airline_section_b = airline#section#create(['%{strftime("%A, %b %d | %I:%M %p")}'])
+  let g:airline_section_c = airline#section#create(['hunks','%t'])
+  let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+endfunction
+autocmd VimEnter * call AirlineInit()
+
