@@ -13,6 +13,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'bling/vim-airline'
+Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 
@@ -35,6 +36,9 @@ syntax on
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" Ctags/TagBar
+nmap <C-b> :TagbarToggle<CR>
+
 " Vim readability
 set nu
 set hlsearch
@@ -44,6 +48,9 @@ set nowrap
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" Clipboard stuff
+set clipboard=unnamed
 
 " Airline displayed by default
 set laststatus=2
