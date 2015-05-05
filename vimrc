@@ -65,7 +65,7 @@ let &colorcolumn="100"
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create(['%{strftime("%A, %b %d | %I:%M %p")}'])
-  let g:airline_section_c = airline#section#create(['hunks','%t'])
+  let g:airline_section_c = airline#section#create(['hunks','%F'])
   let g:airline_left_sep = ''
   let g:airline_right_sep = ''
 endfunction
