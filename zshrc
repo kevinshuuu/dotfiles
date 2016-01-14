@@ -2,7 +2,7 @@
 export ZSH=/Users/kshu/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
-plugins=(git)
+plugins=(git osx rake ruby bundler chruby rails vi-mode)
 
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -13,9 +13,9 @@ source /usr/local/share/chruby/auto.sh
 [ -d "/Users/kshu/8b/bin" ] && export PATH="/Users/kshu/8b/bin:$PATH"
 
 alias headway='cd ~/8b/brands/headway/headway/'
+alias portal='cd ~/8b/brands/headway/portal/'
 alias portfolio='cd ~/8b/apps/portfolio'
 alias identity='cd ~/8b/apps/identity'
-alias be='bundle exec'
 alias powsr='powify server stop && powify server start'
 alias powr='powify restart'
 alias ls='tree --dirsfirst -ChFL 1'
@@ -38,3 +38,8 @@ alias gbd='git branch -D'
 alias timetravel='GIT_COMMITTER_DATE="`date`" git commit --amend --date "`date`"'
 alias gri='git rebase -i'
 alias gst='git stash'
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+
+bindkey '^R' history-incremental-search-backward
