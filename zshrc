@@ -29,7 +29,7 @@ alias gk='git checkout'
 alias gkb='git checkout -b'
 alias gl='git pull'
 alias gp='git push'
-alias gh='git hist'
+alias gh="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias grv='git remote -v'
 alias grup='git remote update --prune'
 alias gpom='git push origin master'
