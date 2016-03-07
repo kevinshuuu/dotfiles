@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/kshu/.oh-my-zsh
+export ZSH=/Users/kevinshu/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 plugins=(git osx rake ruby bundler chruby rails vi-mode)
@@ -10,12 +10,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 source $ZSH/oh-my-zsh.sh
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-[ -d "/Users/kshu/8b/bin" ] && export PATH="/Users/kshu/8b/bin:$PATH"
 
-alias headway='cd ~/8b/brands/headway/headway/'
-alias portal='cd ~/8b/brands/headway/portal/'
-alias portfolio='cd ~/8b/apps/portfolio'
-alias identity='cd ~/8b/apps/identity'
 alias powsr='powify server stop && powify server start'
 alias powr='powify restart'
 alias ls='tree --dirsfirst -ChFL 1'
