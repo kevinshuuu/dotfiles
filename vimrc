@@ -7,6 +7,7 @@ call vundle#begin()
 " Functionality
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'thoughtbot/vim-rspec'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'lilydjwg/colorizer'
@@ -70,3 +71,11 @@ function! AirlineInit()
   let g:airline_right_sep = ''
 endfunction
 autocmd VimEnter * call AirlineInit()
+
+" vim-rspec
+let mapleader = ","
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = "!bundle exec rspec {spec}"
