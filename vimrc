@@ -1,5 +1,6 @@
 set nocompatible
 filetype off
+let mapleader = ","
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -73,9 +74,13 @@ endfunction
 autocmd VimEnter * call AirlineInit()
 
 " vim-rspec
-let mapleader = ","
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!bundle exec rspec {spec}"
+
+" tagbar
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+nnoremap <silent> ,f <C-]>
+nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>

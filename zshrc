@@ -4,24 +4,20 @@ export ZSH=/Users/kevinshu/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 plugins=(git osx ruby rails brew bundler chruby rails vi-mode last-working-dir web-search wd)
 
-
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+export AWS_API_IMPORT_TOOL_PATH=/Users/kevinshu/Downloads/aws-apigateway-importer-aws-apigateway-importer-1.0.1/aws-api-import.sh
+export AWS_API_ENDPOINT=https://11zxkflij9.evalute-api.us-east-1.amazonaws.com/dev/v1
 
 source $ZSH/oh-my-zsh.sh
 
-alias powsr='powify server stop && powify server start'
-alias powr='powify restart'
-alias ls='tree --dirsfirst -ChFL 1'
-alias ls2='tree --dirsfirst -ChFL 2'
-alias ls3='tree --dirsfirst -ChFL 3'
+alias ls='custom_ls'
 alias gs='clear && echo && git status -sb && echo'
 alias gaa='git add -A && gs'
 alias gap='git add --patch'
 alias gc='git commit'
-alias gcm='git commit -m'
-alias gk='git checkout'
-alias gkb='git checkout -b'
-alias gl='git pull'
 alias gp='git push'
 alias gh="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias grv='git remote -v'
@@ -31,10 +27,83 @@ alias gpo='git push origin'
 alias gb='git branch'
 alias gbd='git branch -D'
 alias timetravel='GIT_COMMITTER_DATE="`date`" git commit --amend --date "`date`"'
-alias gri='git rebase -i'
-alias gst='git stash'
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
+
+alias gres='git_reset_soft'
+alias greh='git_reset_hard'
+
+alias gkb='git_checkout_and_branch'
+alias gcm='git_commit_with_message'
+alias gk='git_checkout'
+alias gri='git_rebase_interactive'
+alias gl='git_pull'
+alias gst='git_stash'
+
+# Browsing functions
+function custom_ls () {
+  clear
+
+  if [ $# -eq 0 ]; then
+    tree --dirsfirst -ChFL 1
+  else
+    tree --dirsfirst -ChFL $1
+  fi
+}
+
+# Git functions
+function git_checkout_and_branch () { eval "git checkout -b $1" && update_ctags }
+function git_checkout () { eval "git checkout $1" && update_ctags }
+function git_rebase_interactive () { eval "git rebase -i $1" && update_ctags }
+function git_pull () { eval "git pull $1" && update_ctags }
+function git_stash () { eval "git stash $1" && update_ctags }
+function git_commit_with_message () {
+ if [ $# -eq 0 ]; then
+   echo -n "[enter a commit message] "
+   read message
+   if [ ${#message} -eq 0 ]; then
+     git commit -m "No commit message provided."
+   else
+     git commit -m $message
+   fi
+ else
+   git commit -m "$1"
+ fi
+
+ update_ctags
+}
+function git_reset_soft () {
+  if [ $# -eq 0 ]; then
+    git reset --soft HEAD
+  else
+    git reset --soft HEAD~$1
+  fi
+
+  # update_ctags
+}
+function git_reset_hard () {
+  if [ $# -eq 0 ]; then
+    git reset --hard HEAD
+  else
+    git reset --hard HEAD~$1
+  fi
+
+  update_ctags
+}
+
+# Ctags functions
+function p_update_ctags () { ctags --recurse --exclude=javascripts --exclude=assets }
+function update_ctags () {
+  set +m    # disables the shell from reporting on the background jobs
+  p_update_ctags &
+  pid=$!
+
+  echo -n "Updating Ctags"
+  while kill -0 $pid 2> /dev/null; do   # kill -0 checks if the process is running
+    sleep 0.1                           # 2> /dev/null suppresses errors from when the process ends
+    echo -n "."
+  done
+
+  set -m    # reenables the shell for reporting on the background jobs
+  echo " done!"
+}
 
 bindkey '^R' history-incremental-search-backward
