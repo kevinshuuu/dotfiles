@@ -98,12 +98,14 @@ function update_ctags () {
   p_update_ctags &
   pid=$!
 
-  echo -n "Updating Ctags."
+  local spinstr='|/-\'
   while kill -0 $pid 2> /dev/null; do   # kill -0 checks if the process is running
-    sleep 0.1                           # 2> /dev/null suppresses errors from when the process ends
-    echo -n "."
+    local temp=${spinstr#?}             # 2> /dev/null suppresses errors from when the process ends
+    printf "Updating Ctags... [%c]\r" "$spinstr"
+    local spinstr=$temp${spinstr%"$temp"}
+    sleep 0.07
   done
 
   set -m    # reenables the shell for reporting on the background jobs
-  echo "done!\n"
+  echo "\nDone!\n"
 }
