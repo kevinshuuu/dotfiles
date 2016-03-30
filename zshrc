@@ -16,6 +16,8 @@ export AWS_API_ENDPOINT=https://11zxkflij9.evalute-api.us-east-1.amazonaws.com/d
 source $ZSH/oh-my-zsh.sh
 
 alias lk='custom_ls'
+alias ut='update_ctags'
+
 alias gs='clear && echo && git status -sb && echo'
 alias gaa='git add -A && gs'
 alias gap='git add --patch'
@@ -30,13 +32,12 @@ alias gpo='git push origin'
 alias gb='git branch'
 alias gbd='git branch -D'
 alias timetravel='GIT_COMMITTER_DATE="`date`" git commit --amend --date "`date`"'
+alias gkb='git checkout -b'
+alias gk='git checkout'
 
 alias gres='git_reset_soft'
 alias greh='git_reset_hard'
-
-alias gkb='git_checkout_and_branch'
 alias gcm='git_commit_with_message'
-alias gk='git_checkout'
 alias grbi='git_rebase_interactive'
 alias grb='git_rebase'
 alias gl='git_pull'
@@ -54,14 +55,14 @@ function custom_ls () {
 }
 
 # Git functions
-function git_checkout_and_branch () {
-  git checkout -b $1
-  update_ctags
-}
-function git_checkout () {
-  git checkout $1
-  update_ctags
-}
+#function git_checkout_and_branch () {
+#  git checkout -b $1
+#  update_ctags
+#}
+#function git_checkout () {
+#  git checkout $1
+#  update_ctags
+#}
 function git_rebase () {
   git rebase $1
   update_ctags
