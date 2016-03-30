@@ -15,7 +15,7 @@ export AWS_API_ENDPOINT=https://11zxkflij9.evalute-api.us-east-1.amazonaws.com/d
 
 source $ZSH/oh-my-zsh.sh
 
-alias ls='custom_ls'
+alias lk='custom_ls'
 alias gs='clear && echo && git status -sb && echo'
 alias gaa='git add -A && gs'
 alias gap='git add --patch'
@@ -23,6 +23,7 @@ alias gc='git commit'
 alias gp='git push'
 alias gh="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias grv='git remote -v'
+alias gr='git remote'
 alias grup='git remote update --prune'
 alias gpom='git push origin master'
 alias gpo='git push origin'
@@ -36,7 +37,8 @@ alias greh='git_reset_hard'
 alias gkb='git_checkout_and_branch'
 alias gcm='git_commit_with_message'
 alias gk='git_checkout'
-alias gri='git_rebase_interactive'
+alias grbi='git_rebase_interactive'
+alias grb='git_rebase'
 alias gl='git_pull'
 alias gst='git_stash'
 
@@ -45,18 +47,37 @@ function custom_ls () {
   clear
 
   if [ $# -eq 0 ]; then
-    tree --dirsfirst -ChFL 1
+    tree --dirsfirst -ChFLa 1
   else
-    tree --dirsfirst -ChFL $1
+    tree --dirsfirst -ChFLa $1
   fi
 }
 
 # Git functions
-function git_checkout_and_branch () { eval "git checkout -b $1" && update_ctags }
-function git_checkout () { eval "git checkout $1" && update_ctags }
-function git_rebase_interactive () { eval "git rebase -i $1" && update_ctags }
-function git_pull () { eval "git pull $1" && update_ctags }
-function git_stash () { eval "git stash $1" && update_ctags }
+function git_checkout_and_branch () {
+  git checkout -b $1
+  update_ctags
+}
+function git_checkout () {
+  git checkout $1
+  update_ctags
+}
+function git_rebase () {
+  git rebase $1
+  update_ctags
+}
+function git_rebase_interactive () {
+  git rebase -i $1
+  update_ctags
+}
+function git_pull () {
+  git pull $1
+  update_ctags
+}
+function git_stash () {
+  git stash $1
+  update_ctags
+}
 function git_commit_with_message () {
  if [ $# -eq 0 ]; then
    echo -n "[enter a commit message] "
@@ -107,5 +128,6 @@ function update_ctags () {
   done
 
   set -m    # reenables the shell for reporting on the background jobs
+  printf "Updating Ctags... [%c]\r" "*"
   echo "\nDone!\n"
 }
