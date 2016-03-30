@@ -4,6 +4,8 @@ export ZSH=/Users/kevinshu/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 plugins=(git osx ruby rails brew bundler chruby rails vi-mode last-working-dir web-search wd)
 
+bindkey '^R' history-incremental-search-backward
+
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -96,14 +98,12 @@ function update_ctags () {
   p_update_ctags &
   pid=$!
 
-  echo -n "Updating Ctags"
+  echo -n "Updating Ctags."
   while kill -0 $pid 2> /dev/null; do   # kill -0 checks if the process is running
     sleep 0.1                           # 2> /dev/null suppresses errors from when the process ends
     echo -n "."
   done
 
   set -m    # reenables the shell for reporting on the background jobs
-  echo " done!"
+  echo "done!\n"
 }
-
-bindkey '^R' history-incremental-search-backward
