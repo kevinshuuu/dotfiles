@@ -4,17 +4,17 @@ export ZSH=/Users/kevinshu/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 plugins=(git osx ruby rails brew bundler chruby rails vi-mode last-working-dir web-search wd)
 
-bindkey '^R' history-incremental-search-backward
-
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export AWS_API_IMPORT_TOOL_PATH=/Users/kevinshu/Downloads/aws-apigateway-importer-aws-apigateway-importer-1.0.1/aws-api-import.sh
-export AWS_API_ENDPOINT=https://11zxkflij9.evalute-api.us-east-1.amazonaws.com/dev/v1
+export AWS_API_ENDPOINT=https://11zxkflij9.execute-api.us-east-1.amazonaws.com/dev/v1
 
 source $ZSH/oh-my-zsh.sh
 
+alias brake='bundle exec rake'
+alias brails='bundle exec rails'
 alias lk='custom_ls'
 alias ut='update_ctags'
 
@@ -132,3 +132,6 @@ function update_ctags () {
   printf "Updating Ctags... [%c]\r" "*"
   echo "\nDone!\n"
 }
+
+bindkey '^R' history-incremental-search-backward
+

@@ -7,6 +7,7 @@ call vundle#begin()
 
 " Functionality
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'Raimondi/delimitMate'
@@ -35,11 +36,8 @@ filetype plugin indent on
 syntax on
 
 " NERDTreeToggle
-map <C-n> :NERDTreeToggle<CR>
+map <Leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" Ctags/TagBar
-nmap <C-b> :TagbarToggle<CR>
 
 " Vim readability
 set nu
