@@ -32,8 +32,6 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-haml'
 Plugin 'mxw/vim-jsx'
 
-
-
 call vundle#end()
 filetype plugin indent on
 syntax on
