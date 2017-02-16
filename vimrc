@@ -23,12 +23,15 @@ Plugin 'rking/ag.vim'
 " Syntax
 Plugin 'slim-template/vim-slim.git'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'pangloss/vim-javascript'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'wavded/vim-stylus'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'leshill/vim-json'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-haml'
+Plugin 'mxw/vim-jsx'
+
 
 
 call vundle#end()
