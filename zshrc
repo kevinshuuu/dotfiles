@@ -1,15 +1,8 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/kevinshu/.oh-my-zsh
+export ZSH=/Users/shuk/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
-plugins=(git osx ruby rails brew bundler chruby rails vi-mode last-working-dir web-search wd)
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
-export AWS_API_IMPORT_TOOL_PATH=/Users/kevinshu/Downloads/aws-apigateway-importer-aws-apigateway-importer-1.0.1/aws-api-import.sh
-export AWS_API_ENDPOINT=https://11zxkflij9.execute-api.us-east-1.amazonaws.com/dev/v1
+plugins=(git osx ruby rails bundler chruby rails vi-mode last-working-dir web-search wd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -22,18 +15,19 @@ alias gs='clear && echo && git status -sb && echo'
 alias gaa='git add -A && gs'
 alias gap='git add --patch'
 alias gc='git commit'
-alias gp='git push'
+alias gca='gc --amend'
 alias gh="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
-alias grv='git remote -v'
 alias gr='git remote'
-alias grup='git remote update --prune'
-alias gpom='git push origin master'
-alias gpo='git push origin'
+alias grv='gr -v'
+alias grup='gr update --prune'
+alias gp='grunt eslint && git push'
+alias gpo='gp origin'
+alias gpom='gp origin master'
 alias gb='git branch'
-alias gbd='git branch -D'
-alias timetravel='GIT_COMMITTER_DATE="`date`" git commit --amend --date "`date`"'
+alias gbd='gb -D'
 alias gkb='git checkout -b'
 alias gk='git checkout'
+alias timetravel='GIT_COMMITTER_DATE="`date`" git commit --amend --date "`date`"'
 
 alias gres='git_reset_soft'
 alias greh='git_reset_hard'
@@ -65,19 +59,19 @@ function custom_ls () {
 #}
 function git_rebase () {
   git rebase $1
-  update_ctags
+  #update_ctags
 }
 function git_rebase_interactive () {
   git rebase -i $1
-  update_ctags
+  #update_ctags
 }
 function git_pull () {
   git pull $1
-  update_ctags
+  #update_ctags
 }
 function git_stash () {
   git stash $1
-  update_ctags
+  #update_ctags
 }
 function git_commit_with_message () {
  if [ $# -eq 0 ]; then
@@ -92,7 +86,7 @@ function git_commit_with_message () {
    git commit -m "$1"
  fi
 
- update_ctags
+ #update_ctags
 }
 function git_reset_soft () {
   if [ $# -eq 0 ]; then
@@ -110,7 +104,7 @@ function git_reset_hard () {
     git reset --hard HEAD~$1
   fi
 
-  update_ctags
+  #update_ctags
 }
 
 # Ctags functions

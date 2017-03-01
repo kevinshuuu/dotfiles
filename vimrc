@@ -13,11 +13,11 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'lilydjwg/colorizer'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 
 " Syntax
@@ -72,6 +72,28 @@ function! AirlineInit()
   let g:airline_right_sep = ''
 endfunction
 autocmd VimEnter * call AirlineInit()
+
+function! MarkWindowSwap()
+  let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+  "Mark destination
+  let curNum = winnr()
+  let curBuf = bufnr( "%" )
+  exe g:markedWinNum . "wincmd w"
+  "Switch to source and shuffle dest->source
+  let markedBuf = bufnr( "%" )
+  "Hide and open so that we aren't prompted and keep history
+  exe 'hide buf' curBuf
+  "Switch to dest and shuffle source->dest
+  exe curNum . "wincmd w"
+  "Hide and open so that we aren't prompted and keep history
+  exe 'hide buf' markedBuf
+endfunction
+
+nmap <silent> <leader>m :call MarkWindowSwap()<CR>
+nmap <silent> <leader>p :call DoWindowSwap()<CR>
 
 " vim-rspec
 map <Leader>t :call RunCurrentSpecFile()<CR>
