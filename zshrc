@@ -20,7 +20,7 @@ alias gh="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias gr='git remote'
 alias grv='gr -v'
 alias grup='gr update --prune'
-alias gp='grunt eslint && git push'
+alias gp='git push'
 alias gpo='gp origin'
 alias gpom='gpo master'
 alias gpoc='gpo $(gbc)'
