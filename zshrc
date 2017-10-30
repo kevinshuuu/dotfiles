@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/shuk/.oh-my-zsh
+export ZSH=/Users/kevinshu/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 plugins=(git osx ruby rails bundler chruby rails vi-mode last-working-dir web-search wd)

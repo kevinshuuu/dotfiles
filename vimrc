@@ -58,7 +58,7 @@ set laststatus=2
 
 " Making GitGutter look better
 highlight clear SignColumn
-let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
 
 " 80 character column marker
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
