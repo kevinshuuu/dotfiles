@@ -1,4 +1,5 @@
 set nocompatible
+set backspace=2
 filetype off
 let mapleader = ","
 
@@ -13,6 +14,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'lilydjwg/colorizer'
+Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-endwise'
